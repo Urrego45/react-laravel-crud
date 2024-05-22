@@ -15,4 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::apiResource('expenses', ExpenseController::class);
+Route::group(['middleware' => ['cors']], function () {
+    //Aca declaras tus rutas
+    Route::apiResource('expenses', ExpenseController::class);
+});
+

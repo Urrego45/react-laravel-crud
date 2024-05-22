@@ -1,6 +1,5 @@
 import { createContext, useContext, useState } from 'react';
 
-import * as expensesApi from '../api/expense';
 
 
 const ExpenseContext = createContext()
