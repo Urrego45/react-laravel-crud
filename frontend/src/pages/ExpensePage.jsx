@@ -16,7 +16,6 @@ function ExpensePage() {
   const getExpenses = async () => {
     try {
       const res = await expensesApi.getExpensesRequest()
-      console.log(res.data);
       setExpenses(res.data)
     } catch (e) {
       console.log(e);

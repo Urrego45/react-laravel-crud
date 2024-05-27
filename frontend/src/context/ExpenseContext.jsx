@@ -12,7 +12,6 @@ export function ExpenseProvider({ children }) {
   const getExpenses = async () => {
     try {
       const res = expensesApi.getExpenses()
-      console.log(res);
       setExpenses(res.data)
     } catch (e) {
       console.log(e);

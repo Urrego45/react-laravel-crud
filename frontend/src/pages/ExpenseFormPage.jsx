@@ -11,17 +11,16 @@ function ExpenseFormPage () {
   const params = useParams()
 
   useEffect(() => {
-    console.log(params.id);
     async function loadExpensive () {
       if (params.id) {
         const res = await expensesApi.getExpenseRequest(params.id)
-        console.log(res);
-        setValue('type', res.type)
-        setValue('amount', res.amount)
-        setValue('description', res.description)
-        setValue('expense_date', res.expense_date)
+        setValue('type', res.data.type)
+        setValue('amount', res.data.amount)
+        setValue('description', res.data.description)
+        setValue('expense_date', res.data.expense_date)
       }
     }
+
     loadExpensive()
   }, [])
 
@@ -38,42 +37,33 @@ function ExpenseFormPage () {
   return (
     <div>
       <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          placeholder='Type'
-          {... register("type")}
-          // className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'
-          autoFocus
-        />
 
-        <input
-          type="text"
-          placeholder='amount'
-          {... register("amount")}
-          // className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'
-          autoFocus
-        />
+        <div className="mb-3">
+          <label htmlFor="type" className="form-label">Type</label>
+          <input type="text" className="form-control" id="type" aria-describedby="emailHelp" {... register("type")} />
+        </div>
 
-        <textarea
-          rows="3"
-          {... register("description")}
-          placeholder='Description'
-          className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'
-        />
+        <div className="mb-3">
+          <label htmlFor="amount" className="form-label">Amount</label>
+          <input type="decimal" className="form-control" id="amount" {... register("amount")} />
+        </div>
 
-        <input
-          type="date"
-          placeholder='expense_date'
-          {... register("expense_date")}
-          // className='w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2'
-          autoFocus
-        />
+        <div className="mb-3">
+          <label htmlFor="description" className="form-label">description</label>
+          <input type="text" className="form-control" id="type" aria-describedby="emailHelp" {... register("description")} />
+        </div>
 
-        <button>Save</button>
+        <div className="mb-3">
+          <label htmlFor="expense_date" className="form-label">expense_date</label>
+          <input type="date" className="form-control" id="expense_date" {... register("expense_date")} />
+        </div>
 
-        
+        <button type="submit" className="btn btn-primary">Submit</button>
       </form>
+
     </div>
+
+    
   )
 }
 
